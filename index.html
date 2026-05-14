@@ -1,83 +1,422 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ana Croiala</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
 
-    body{
+    *{
       margin:0;
-      background:#f5f5f5;
-      font-family:Arial, sans-serif;
-      color:#1e1e1e;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Inter', sans-serif;
+      background:#f4f5f7;
+      color:#111827;
+      overflow-x:hidden;
+    }
+
+    .background-glow{
+      position:fixed;
+      width:700px;
+      height:700px;
+      background:radial-gradient(circle, rgba(37,99,235,0.18), transparent 70%);
+      top:-250px;
+      right:-200px;
+      z-index:-1;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    header{
+      padding:30px 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo{
+      font-size:22px;
+      font-weight:700;
+      letter-spacing:1px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#374151;
+      margin-left:25px;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#111827;
     }
 
     .hero{
-      height:100vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
+      min-height:88vh;
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr;
       align-items:center;
-      text-align:center;
-      padding:20px;
+      gap:60px;
+      padding-bottom:80px;
+    }
+
+    .tag{
+      display:inline-block;
+      background:#e0e7ff;
+      color:#1d4ed8;
+      padding:10px 18px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:600;
+      margin-bottom:25px;
     }
 
     h1{
-      font-size:64px;
-      margin-bottom:10px;
+      font-size:72px;
+      line-height:1;
+      margin-bottom:20px;
     }
 
-    h2{
-      font-weight:400;
-      color:#555;
+    .subtitle{
+      font-size:26px;
+      color:#4b5563;
       margin-bottom:30px;
+      font-weight:400;
     }
 
-    p{
-      max-width:700px;
-      line-height:1.6;
+    .description{
       font-size:18px;
+      line-height:1.8;
+      color:#4b5563;
+      max-width:700px;
+      margin-bottom:40px;
     }
 
-    .btn{
-      margin-top:30px;
-      padding:14px 28px;
+    .buttons{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .btn-primary{
       background:#0f172a;
       color:white;
       text-decoration:none;
-      border-radius:10px;
+      padding:16px 30px;
+      border-radius:16px;
+      font-weight:600;
+      transition:0.3s;
+      box-shadow:0 10px 25px rgba(15,23,42,0.18);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-secondary{
+      background:white;
+      color:#111827;
+      text-decoration:none;
+      padding:16px 30px;
+      border-radius:16px;
+      font-weight:600;
+      border:1px solid #d1d5db;
+      transition:0.3s;
+    }
+
+    .btn-secondary:hover{
+      background:#f9fafb;
+    }
+
+    .card{
+      background:white;
+      border-radius:30px;
+      padding:40px;
+      box-shadow:0 25px 60px rgba(0,0,0,0.08);
+      position:relative;
+    }
+
+    .card h3{
+      margin-bottom:25px;
+      font-size:24px;
+    }
+
+    .metric{
+      margin-bottom:28px;
+    }
+
+    .metric-number{
+      font-size:42px;
+      font-weight:700;
+      color:#111827;
+    }
+
+    .metric-label{
+      color:#6b7280;
+      margin-top:6px;
+      line-height:1.5;
+    }
+
+    .skills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:25px;
+    }
+
+    .skill{
+      background:#f3f4f6;
+      padding:10px 16px;
+      border-radius:999px;
+      font-size:14px;
+      color:#374151;
+      font-weight:500;
+    }
+
+    .section{
+      padding:100px 0;
+    }
+
+    .section-title{
+      font-size:42px;
+      margin-bottom:20px;
+      text-align:center;
+    }
+
+    .section-text{
+      text-align:center;
+      color:#6b7280;
+      max-width:800px;
+      margin:auto;
+      line-height:1.8;
+      font-size:18px;
+    }
+
+    .expertise-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px;
+      margin-top:60px;
+    }
+
+    .expertise-card{
+      background:white;
+      padding:35px;
+      border-radius:24px;
+      box-shadow:0 10px 35px rgba(0,0,0,0.06);
+      transition:0.3s;
+    }
+
+    .expertise-card:hover{
+      transform:translateY(-6px);
+    }
+
+    .expertise-card h4{
+      margin-bottom:15px;
+      font-size:22px;
+    }
+
+    .expertise-card p{
+      color:#6b7280;
+      line-height:1.7;
+    }
+
+    footer{
+      padding:50px 0;
+      text-align:center;
+      color:#6b7280;
+    }
+
+    @media(max-width:950px){
+
+      .hero{
+        grid-template-columns:1fr;
+        padding-top:40px;
+      }
+
+      h1{
+        font-size:54px;
+      }
+
+      .subtitle{
+        font-size:22px;
+      }
+
+      header{
+        flex-direction:column;
+        gap:20px;
+      }
+
+      nav a{
+        margin:0 10px;
+      }
+
     }
 
   </style>
 </head>
-
 <body>
 
-  <section class="hero">
+  <div class="background-glow"></div>
 
-    <h1>Ana Croiala</h1>
+  <div class="container">
 
-    <h2>
-      Aerospace Operations & Customer Strategy
-    </h2>
+    <header>
+      <div class="logo">Ana Croiala</div>
 
-    <p>
-      Coordinating aerospace customer operations,
-      SAP transformation, process optimization
-      and strategic account management across
-      international manufacturing environments.
-    </p>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-    <a class="btn" href="https://linkedin.com" target="_blank">
-      www.linkedin.com/in/
-ana-maria-croiala
+    <section class="hero">
 
+      <div>
 
-    </a>
+        <div class="tag">
+          Aerospace • Operations • SAP Transformation
+        </div>
+
+        <h1>
+          Strategic Aerospace Operations & Customer Management
+        </h1>
+
+        <div class="subtitle">
+          Coordinating international customer operations, SAP implementation and process optimization.
+        </div>
+
+        <div class="description">
+          Experienced in aerospace customer operations, cross-site coordination and strategic account management. Supporting transformation initiatives, operational efficiency and scalable business processes across international manufacturing environments.
+        </div>
+
+        <div class="buttons">
+
+          <a class="btn-primary" href="https://www.linkedin.com" target="_blank">
+            LinkedIn
+          </a>
+
+          <a class="btn-secondary" href="mailto:ana@anacroiala.com">
+            Contact
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Professional Highlights</h3>
+
+        <div class="metric">
+          <div class="metric-number">48M€</div>
+          <div class="metric-label">
+            Portfolio managed across aerospace customer operations.
+          </div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-number">7+</div>
+          <div class="metric-label">
+            Years of experience within the aerospace industry.
+          </div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-number">3</div>
+          <div class="metric-label">
+            Coordinated operational activities across multiple sites.
+          </div>
+        </div>
+
+        <div class="skills">
+          <div class="skill">SAP</div>
+          <div class="skill">Automation</div>
+          <div class="skill">Operations</div>
+          <div class="skill">Customer Strategy</div>
+          <div class="skill">Aerospace</div>
+          <div class="skill">Process Optimization</div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <section class="section" id="about">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        About
+      </h2>
+
+      <div class="section-text">
+        Building operational structure, coordinating customer activities and supporting transformation projects in aerospace manufacturing environments. Focused on scalable systems, communication flow, strategic coordination and operational efficiency.
+      </div>
+
+    </div>
 
   </section>
 
+  <section class="section" id="expertise">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Expertise
+      </h2>
+
+      <div class="expertise-grid">
+
+        <div class="expertise-card">
+          <h4>Customer Operations</h4>
+          <p>
+            Coordinating strategic customer activities, order flow and operational communication across manufacturing environments.
+          </p>
+        </div>
+
+        <div class="expertise-card">
+          <h4>SAP Transformation</h4>
+          <p>
+            Supporting SAP implementation, operational enablement and process transition initiatives.
+          </p>
+        </div>
+
+        <div class="expertise-card">
+          <h4>Process Optimization</h4>
+          <p>
+            Improving workflows, automation logic and operational visibility for scalable execution.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer id="contact">
+    © 2026 Ana Croiala • Aerospace Operations & Strategy
+  </footer>
+
 </body>
 </html>
+```
